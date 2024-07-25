@@ -22,6 +22,7 @@ return new class extends Migration
             $table->integer("quantity");
             $table->integer("discount");
             
+            
             $table->timestamps();
         });
     }

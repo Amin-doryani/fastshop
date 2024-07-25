@@ -9,10 +9,12 @@
         "auto": "^11.2.0",
         "autoprefixer": "^10.4.19",
         "axios": "^1.6.4",
-        "laravel-vite-plugin": "^1.0",
         "postcss": "^8.4.40",
         "prefixer": "^0.0.3",
-        "tailwindcss": "^3.4.6",
-        "vite": "^5.0"
+        "tailwindcss": "^3.4.7"
+    },
+    "dependencies": {
+        "laravel-vite-plugin": "^1.0.5",
+        "vite": "^5.3.5"
     }
 }

@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Admin;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -12,7 +15,7 @@ class AdminController extends Controller
      */
     public function index()
     {
-        //
+        return("hi from index");
     }
 
     /**
@@ -28,15 +31,31 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            
+            'username' => 'required|unique:admins',
+            'password' => 'required',
+            'name'=>'nullable',
+
+        ]);
+        $admin = New Admin();
+        $username = $request->input("username");
+        $password = $request->input("password");
+        $admin ->username = $username;
+        $admin ->password = Hash::make($password) ;
+        $admin->name = $request->input("name");
+        $admin->save();
+        return view("admin.login");
+        
+
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Admin $admin)
+    public function show()
     {
-        //
+        return view('admin.login');
     }
 
     /**
@@ -61,5 +80,26 @@ class AdminController extends Controller
     public function destroy(Admin $admin)
     {
         //
+    }
+    public function login(Request $request){
+        $request->validate([
+            
+            'username' => 'required',
+            'password' => 'required',
+
+        ]);
+        $username = $request->input("username");
+        $password = $request->input("password");
+
+        if (Auth::attempt(['username' => $username, 'password' => $password])) {
+            $request->session()->regenerate();
+            
+
+            return redirect()->route('dashboard');
+        }
+        else{
+             return redirect()->back()->withErrors("problem in the login");
+        }
+
     }
 }

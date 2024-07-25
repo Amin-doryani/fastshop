@@ -7,9 +7,9 @@
     <title>Document</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    @vite('resources/css/app.css')
+    {{-- @vite('resources/css/app.css') --}}
 </head>
 <body >
-    <h1 class="">hello</h1>
+    <h1 class="bg-red-500">hello</h1>
 </body>
 </html>

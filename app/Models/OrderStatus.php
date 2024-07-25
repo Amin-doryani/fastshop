@@ -5,14 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Productimg extends Model
+class OrderStatus extends Model
 {
     use HasFactory;
-    protected $fillable = [
-        'path',
-        'id_products',
-    ];
-    public function product(){
-        return $this->belongsto(Product::class);
+    public function order(){
+        return $this->belongsTo(Oredr::class);
     }
+    protected $fillable = [
+        'status',
+        'id_order',
+        
+    ];
 }

@@ -10,6 +10,7 @@ class Store extends Model
     protected $fillable = [
         'title',
         'content',
+        
     ];
     use HasFactory;
 }

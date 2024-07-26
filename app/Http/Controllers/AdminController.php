@@ -15,7 +15,7 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return("hi from index");
+        return view("admin.dashboard");
     }
 
     /**
@@ -102,4 +102,9 @@ class AdminController extends Controller
         }
 
     }
+    public function logout(){
+        Session::flush();
+        Auth::logout();
+        return redirect()->route('login');
+     }
 }

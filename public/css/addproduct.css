@@ -1,0 +1,42 @@
+.preview-img, .stored-img {
+    max-width: 150px;
+    max-height: 150px;
+    margin: 10px;
+}
+.drop-area {
+    border: 2px dashed #ccc;
+    border-radius: 10px;
+    
+    padding: 50px 20px;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    color: #aaa;
+    margin-bottom: 20px;
+}
+.drop-area.highlight {
+    border-color: #333;
+    background-color: #f9f9f9;
+}
+#stored-images {
+    display: flex;
+    flex-wrap: wrap;
+}
+#image-preview {
+    display: flex;
+    flex-wrap: wrap;
+}
+.remove-btn {
+    
+    background: red;
+    color: white;
+    width: 30%;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin:auto;
+    
+}
+.remove-btn:hover{
+    background: rgb(145, 9, 9);
+}

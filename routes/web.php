@@ -1,5 +1,9 @@
 <?php
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CategoryController;
+
+
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -16,3 +20,12 @@ Route::post('/storeadmin', [AdminController::class,'store'])->name("storeadmin")
 
 
 Route::get("/dashboard",[AdminController::class,'index'])->name("dashboard")->middleware("auth");
+Route::get("/dashboard/products",[ProductController::class,'index'])->name("dashboard-product")->middleware("auth");
+Route::get("/dashboard/add-product",[ProductController::class,'create'])->name("add-product")->middleware("auth");
+
+//addcategory
+
+Route::get("add-category",[CategoryController::class,'index'])->name('category')->middleware("auth");
+Route::post("savecat",[CategoryController::class,'store'])->name('savecat')->middleware("auth");
+
+

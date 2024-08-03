@@ -12,7 +12,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $data = Category::all();
+        return view("admin.categorys.category",['data'=>$data]);
     }
 
     /**
@@ -28,7 +29,34 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        try {
+            $request->validate([
+                'file' => 'required|image|file',
+                'name' => 'required',
+            ]);
+    
+            if ($request->hasFile('file')) {
+                $file = $request->file('file');
+                $filename = time() . '.' . $file->getClientOriginalExtension();
+                $file->storeAs('public/assets/images/cat',$filename);
+                $cat = New Category();
+                $cat->name = $request->input("name");
+                $cat->image = $filename;
+                $cat->save();
+                
+                
+            }
+
+            
+            
+            
+            return response()->json(['status' => 'success']);
+        } catch (\Exception $e) {
+            
+            \Log::error($e->getMessage());
+            return response()->json(['status' => 'error', 'message' => $e->getMessage()], 500);
+        }
     }
 
     /**

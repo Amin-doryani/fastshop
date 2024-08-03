@@ -9,6 +9,8 @@ export default {
     extend: {
       colors: {
         admincolor: '#FF8901',
+        hoveradmincolor: '#d07813',
+
         iconcolor:'#FFB056',
         main:'#F5F2FF',
         tableiconcolor:'#C8CAD8',

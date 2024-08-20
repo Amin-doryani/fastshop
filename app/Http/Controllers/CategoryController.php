@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Storage;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
@@ -78,9 +79,54 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, $id)
     {
-        //
+
+        $cat = Category::find($id);
+        $catimagepath = $cat->image;
+        if($cat){
+            $request->validate([
+                'name'=>'required',
+            ]);
+
+            if($request->hasFile('file')){
+                $file = $request->file('file');
+                $filename = time() . '.' . $file->getClientOriginalExtension();
+                $file->storeAs('public/assets/images/cat',$filename);
+                Storage::delete('');
+                if (Storage::exists('public/assets/images/cat/'.$catimagepath)) {
+                    Storage::delete('public/assets/images/cat/'.$catimagepath);
+                    
+                }
+                $cat->name = $request->input("name");
+                $cat->image = $filename;
+                $cat->save();
+               
+            }else{
+                $cat->name = $request->input("name");
+                $cat->save();
+                
+            }
+            
+            return response()->json([
+                'status' => 200, 
+                'cat' => $cat,
+            ]);
+            
+        }else{
+            return response()->json([
+                'status' => 404, 
+                'message' => 'not found',
+            ]);
+        }
+        
+
+
+
+
+        
+        
+
     }
 
     /**

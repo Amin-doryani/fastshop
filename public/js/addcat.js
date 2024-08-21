@@ -1,3 +1,4 @@
+// const { Connect } = require("vite");
 
 document.getElementById('dropzone-file').addEventListener('change', function(event) {
     const file = event.target.files[0];
@@ -71,7 +72,11 @@ document.getElementById('dropzone-file2').addEventListener('change', function(ev
 });
 // ADD CATEGORY
 $(document).ready(function(){
-    
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
     $("#addcatform").submit(function(e){
 
         e.preventDefault();
@@ -113,7 +118,31 @@ $(document).ready(function(){
     })
     //confirm delete the category
     $("#confirmdeletecat").click(function(e){
+        const catid = document.getElementById("catiddelete").innerHTML;
+       
+        
+        $.ajax({
+            url:"deletecat/" + catid,
+            type:"Delete",
+            
+            ConnectType:false,
+            processData: false,
+            success: function(response){
+                if(response.status == 200){
+                    
+                    $('#deletecatdiv').fadeOut();
+                    
+                
+                }else if(response.status == 404){
+                    alert("there is a problem deleteing this cat.. please contcat the devloper.. bcs we can't find the cat in database")
+                    $('#deletecatdiv').fadeOut();
 
+                }
+            },
+            error:function(err){
+                alert("proble");
+            }
+        })
     })
     // UPDATE CATEGORY
     $("#upcatform").submit(function(e){

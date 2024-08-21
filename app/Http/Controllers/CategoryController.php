@@ -132,8 +132,26 @@ class CategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Category $category)
+    public function destroy($id)
     {
-        //
+        $cat = Category::find($id);
+        if($cat){
+            $catimagepath = $cat->image;
+            if (Storage::exists('public/assets/images/cat/'.$catimagepath)) {
+                Storage::delete('public/assets/images/cat/'.$catimagepath);
+                
+            }
+            $cat->delete();
+            
+            return response()->json([
+                'status' => 200,
+                'message' => 'found',
+            ]);
+        }else{
+            return response()->json([
+                'status' => 404,
+                'message' => 'problem',
+            ]);
+        }
     }
 }

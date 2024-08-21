@@ -28,5 +28,6 @@ Route::get("/dashboard/add-product",[ProductController::class,'create'])->name("
 Route::get("/dashboard/category",[CategoryController::class,'index'])->name('category')->middleware("auth");
 Route::post("dashboard/savecat",[CategoryController::class,'store'])->name('savecat')->middleware("auth");
 Route::post("dashboard/upcat/{id}",[CategoryController::class,'update'])->name('upcat')->middleware("auth");
+Route::Delete("dashboard/deletecat/{id}",[CategoryController::class,'destroy'])->name('deletecat')->middleware("auth");
 
 

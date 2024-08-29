@@ -18,8 +18,11 @@
 
     <main class=" md:ml-1/12 md:w-11/12 w-full flex flex-col bg-main  md:p-10 p-2  gap-5 min-h-lvh">
     @include('admin.categorys.addcat')
+    
     @include('admin.categorys.deletecat')
     @include('admin.categorys.updatecat')
+    @include('admin.categorys.subcat')
+    @include('admin.categorys.addsubcat')
 
 
 
@@ -27,7 +30,7 @@
             <h1 class="text-lg font-medium font-sans">Category</h1>
         </article>
         <article class="w-full p-5 bg-white rounded-lg shadow-md flex flex-wrap justify-around">
-            <input type="text" name="produvts" placeholder="Search with id or title" class="md:w-1/3 2/3 h-10 pl-2 border-2 focus:ring  focus:outline-none rounded-sm">
+            <input id="searchname" type="text" name="produvts" placeholder="Search with id or title" class="md:w-1/3 2/3 h-10 pl-2 border-2 focus:ring  focus:outline-none rounded-sm">
             
             <a   class="bg-admincolor text-white md:w-1/6 w-1/3 flex justify-center items-center cursor-pointer rounded-md hover:bg-hoveradmincolor font-medium" onclick="addcat()">Add Category</a>
            
@@ -46,12 +49,12 @@
                             <th class="px-4 py-2">Delete</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="getcats">
                         @foreach ($data as $item)
                         <tr class="border-b border-gray-200 hover:bg-gray-50">
                             <td class="px-4 py-2">#{{$item->id}}</td>
                             <td class="px-4 py-2 flex items-center"><img src="{{ asset('storage/assets/images/cat/' . $item->image) }}" alt="cat"  class="w-10 h-10 rounded-sm mr-3"> {{$item->name}}</td>
-                            <td class="px-4 py-2">6 Subcat</td>
+                            <td class="px-4 py-2 hover:bg-slate-400 cursor-pointer opensubcat" data-name="{{$item->name}}"  data-id="{{$item->id}}"><span>{{$item->subcategory_count}}</span> Subcat</td>
                             <td class="px-4 py-2 text-blue-500 cursor-pointer updatecatbutton"  data-category-id="{{$item->id}}" data-category-name="{{$item->name}}" data-category-image="{{$item->image}}" >Edit</td>
                             <td class="px-4 py-2 text-red-500 cursor-pointer deletecat" data-category-id="{{$item->id}}" data-category-name="{{$item->name}}"  >Delete</td>
                         </tr>

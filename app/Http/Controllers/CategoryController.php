@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Storage;
 
 use App\Models\Category;
+use App\Models\Subcategory;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -13,8 +14,10 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $data = Category::all();
+        $data = Category::withCount('subcategory')->get();
+
         return view("admin.categorys.category",['data'=>$data]);
+        
     }
 
     /**
@@ -63,9 +66,24 @@ class CategoryController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Category $category)
+    public function show($val)
     {
-        //
+        
+        if($val != "getall29082024"){
+            $cat = Category::where("name","like",'%'.$val.'%')
+            ->withCount('subcategory')
+            ->get();
+            return  response()->json([
+                "res" => $cat,
+            ]
+        );
+        }else{
+            $cat = Category::withCount('subcategory')->get();
+            return  response()->json([
+                "res" => $cat,
+            ]);
+        }
+        
     }
 
     /**
@@ -135,11 +153,24 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         $cat = Category::find($id);
+        // return response()->json([
+        //     'status' => 200,
+        //     'message' => 'found',
+        // ]);
         if($cat){
             $catimagepath = $cat->image;
             if (Storage::exists('public/assets/images/cat/'.$catimagepath)) {
                 Storage::delete('public/assets/images/cat/'.$catimagepath);
                 
+            }
+            $subcat = Subcategory::where("id_category",$id)->get();
+            foreach($subcat as $sub){
+                $img = $sub->image;
+                if (Storage::exists('public/assets/images/subcat/'.$img)) {
+                    Storage::delete('public/assets/images/subcat/'.$img);
+                }
+                $sub->delete();
+
             }
             $cat->delete();
             

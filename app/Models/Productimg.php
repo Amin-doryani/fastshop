@@ -15,4 +15,9 @@ class Productimg extends Model
     public function product(){
         return $this->belongsto(Product::class);
     }
+    public function getFirstImageByProductId($id_pro) {
+            return self::where('id_pro', $id_pro)
+                ->orderBy('created_at', 'asc') 
+                ->first();
+        }
 }

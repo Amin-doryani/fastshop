@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Storage;
 use App\Models\Productimg;
 use Illuminate\Http\Request;
 
@@ -34,9 +34,13 @@ class ProductimgController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Productimg $productimg)
+    public function show($id)
     {
-        //
+        $data = Productimg::where("id_products",$id)->get();
+        return  response()->json([
+            "res" => $data,
+        ]
+        );
     }
 
     /**
@@ -58,8 +62,18 @@ class ProductimgController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Productimg $productimg)
+    public function destroy($id)
     {
-        //
+        $image = Productimg::findOrFail($id);
+        $id2 = $image->id_products;
+        if (Storage::exists('public/assets/images/productsimages/'.$image->paths)) {
+            Storage::delete('public/assets/images/productsimages/'.$image->paths);
+        }
+        $image->delete();
+        $images =  Productimg::where("id_products",$id2)->get();
+        return  response()->json([
+            "res" => $images,
+        ]
+        );
     }
 }

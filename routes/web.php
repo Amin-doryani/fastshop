@@ -3,7 +3,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SubcategoryController;
-
+use App\Http\Controllers\ProductimgController;
 
 
 use Illuminate\Support\Facades\Route;
@@ -24,6 +24,15 @@ Route::post('/storeadmin', [AdminController::class,'store'])->name("storeadmin")
 Route::get("/dashboard",[AdminController::class,'index'])->name("dashboard")->middleware("auth");
 Route::get("/dashboard/products",[ProductController::class,'index'])->name("dashboard-product")->middleware("auth");
 Route::get("/dashboard/add-product",[ProductController::class,'create'])->name("add-product")->middleware("auth");
+Route::get("/dashboard/editproduct/{id}",[ProductController::class,'edit'])->name("edit-product")->middleware('auth');
+Route::get("/dashboard/deleteproduct/{id}",[ProductController::class,'destroy'])->name("delete-product")->middleware("auth");
+Route::post("/dashboard/store-product",[ProductController::class,'store'])->name("store-product")->middleware("auth");
+Route::get("/dashboard/getsubcatforpro/{id}",[ProductController::class,'getcats'])->name("getcats")->middleware("auth");
+Route::get("/dashboard/editproduct/getsubcatforpro/{id}",[ProductController::class,'getcats'])->name("getcats")->middleware("auth");
+Route::Post("dashboard/editproduct/updateproduct/{id}",[ProductController::class,'Update'])->name("updateproduct")->middleware("auth");
+//get image
+Route::get("dashboard/editproduct/getimages/{id}",[ProductimgController::class,'show'])->name("getimages")->middleware("auth");
+Route::get("dashboard/editproduct/deleteimage/{id}",[ProductimgController::class,'destroy'])->name("deleteimages")->middleware("auth");
 
 //addcategory
 

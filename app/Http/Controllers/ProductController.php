@@ -15,14 +15,27 @@ class ProductController extends Controller
     
     public function index()
     {
-        // $products = Product::all();
+        
         $products = Product::with('subcategory', 'Productimg')
         ->take(20)
         ->get();
         
-        // return($products[0]['productimg'][0]['paths']);
+        
+        foreach($products as $pro){
+            if ($pro->productimg->isEmpty()) {
+                
+                $pro->productimg->push([
+                    'id' => null, 
+                    'id_products' => $pro->id,
+                    'paths' => 'defultimage.png', 
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ]);
+            }
+        }
+        
         return view("admin.products",['products'=>$products]);
-        return($products);
+        
     }
 
     /**

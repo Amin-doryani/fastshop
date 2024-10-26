@@ -45,4 +45,6 @@ Route::delete("/dashboard/deletesubcat/{id}",[SubcategoryController::class,'dest
 Route::post("/dashboard/savesubcatinfo",[SubcategoryController::class,'Store'])->middleware("auth")->name("storesubcat");
 Route::get("dashboard/getcats/{val}",[CategoryController::class,'show'])->name('showcats')->middleware("auth");
 
+//add images
 
+Route::post("dashboard/editproduct/addimages/{id}",[ProductController::class,'addimages'])->name('addimage')->middleware("auth");

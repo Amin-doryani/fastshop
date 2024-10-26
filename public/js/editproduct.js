@@ -125,6 +125,7 @@ $("#updateimages").click(function(e){
 })
 $("#goback").click(function(e){
     $("#updateimagesdiv").fadeOut();
+    
 })
 // delete image
 
@@ -167,3 +168,45 @@ function addevntltt(){
         })
     })
 }
+// add images
+$("#updateimage2").change(function(e){
+    const files = this.files; 
+    const formData = new FormData();
+
+    const id3 = document.getElementById("idproduct").innerHTML;
+    for (let i = 0; i < files.length; i++) {
+        formData.append("updateimage2[]", files[i]);
+    }
+    $.ajaxSetup({
+        headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+         }
+    });
+    $.ajax({
+        url: "addimages/" + Number(id3),
+        type:'POST',
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function(response){
+           
+            $("#proimages").html("");
+            $.each(response.res,function(key,img){
+                
+                $("#proimages").append('\
+                        <div class="w-10/12 flex flex-col justify-center items-center  gap-2 py-2 shadow-md mb-2">\
+                        <img src="http://127.0.0.1:8000/storage/assets/images/productsimages/'+img.paths+'" alt="img" class="w-6/12 ">\
+                        <button class="bg-red-500 hover:bg-red-700 text-white py-2 px-6 rounded-sm w-4/12 deleteimage" data-id="'+img.id+'">Delete Image</button>\
+                        </div>\
+                    ')
+            })
+            $("#updateimagesdiv").fadeIn();
+            $("#updateimagesdiv").css("display","flex");
+            addevntltt()
+        },
+        error: function(error){
+            alert("there is a problem please contcat the devs!!")
+        }
+
+    })
+})

@@ -161,4 +161,26 @@ class ProductController extends Controller
         ]
         );
     }
+
+    public function addimages(Request $request,$id){
+        
+        if ($request->hasFile('updateimage2')){
+            foreach($request->file('updateimage2') as $file){
+                $a = 1;
+                $filename = time() .$a. '.' . $file->getClientOriginalExtension();
+                $file->storeAs('public/assets/images/productsimages',$filename);
+                $img = New Productimg();
+                $img->paths = $filename;
+                $img->id_products = $id;
+                $img->save();
+                $a+=1;
+        }}
+        $images = Productimg::where("id_products",$id)->get();
+        return  response()->json([
+            "res" => $images,
+        ]
+        );
+    }
 }
+
+

@@ -108,7 +108,7 @@ $("#updateimages").click(function(e){
                 
                 $("#proimages").append('\
                         <div class="w-10/12 flex flex-col justify-center items-center  gap-2 py-2 shadow-md mb-2">\
-                        <img src="http://127.0.0.1:8000/storage/assets/images/productsimages/'+img.paths+'" alt="img" class="w-6/12 ">\
+                        <img src="/storage/assets/images/productsimages/'+img.paths+'" alt="img" class="w-6/12 ">\
                         <button class="bg-red-500 hover:bg-red-700 text-white py-2 px-6 rounded-sm w-4/12 deleteimage" data-id="'+img.id+'">Delete Image</button>\
                         </div>\
                     ')
@@ -155,7 +155,7 @@ function addevntltt(){
                 
                         $("#proimages").append('\
                             <div class="w-10/12 flex flex-col justify-center items-center  gap-2 py-2 shadow-md mb-2">\
-                            <img src="http://127.0.0.1:8000/storage/assets/images/productsimages/'+img.paths+'" alt="img" class="w-6/12 ">\
+                            <img src="/storage/assets/images/productsimages/'+img.paths+'" alt="img" class="w-6/12 ">\
                             <button class="bg-red-500 hover:bg-red-700 text-white py-2 px-6 rounded-sm w-4/12 deleteimage" data-id="'+img.id+'">Delete Image</button>\
                             </div>\
                         ')
@@ -195,7 +195,7 @@ $("#updateimage2").change(function(e){
                 
                 $("#proimages").append('\
                         <div class="w-10/12 flex flex-col justify-center items-center  gap-2 py-2 shadow-md mb-2">\
-                        <img src="http://127.0.0.1:8000/storage/assets/images/productsimages/'+img.paths+'" alt="img" class="w-6/12 ">\
+                        <img src="/storage/assets/images/productsimages/'+img.paths+'" alt="img" class="w-6/12 ">\
                         <button class="bg-red-500 hover:bg-red-700 text-white py-2 px-6 rounded-sm w-4/12 deleteimage" data-id="'+img.id+'">Delete Image</button>\
                         </div>\
                     ')

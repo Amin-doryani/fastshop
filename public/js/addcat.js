@@ -239,12 +239,13 @@ $(document).ready(function(){
                     url:'getsubcat/' + id,
                     dataType:'Json',
                     success:function(response){
+                        
                         // console.log(response.res)
                         $("#table").html("");
                         $("#table").append('<hr class="w-full">');
                         $.each(response.res,function(key, subcat){
-                            $('#table').append('<div  class="flex min-w-10 items-center justify-start gap-2 py-2">\
-               <img src="http://127.0.0.1:8000/storage/assets/images/subcat/'+subcat.image+'" class="w-16" alt="image">\
+                            $('#table').append('<div  class="flex min-w-10 items-center justify-start gap-2 py-2"}`>\
+               <img src="/storage/assets/images/subcat/'+subcat.image+'" class="w-16" alt="image">\
                <h1 class="font-bold text-xl w-6/12">'+subcat.name+'</h1>\
                <button class="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600 right-0 deletesubcatbtn" data-id="'+subcat.id+'" >Delete</button>\
             </div><hr class="w-full ">');
@@ -323,7 +324,7 @@ function getdata(){
             $("#table").append('<hr class="w-full">');
             $.each(response.res,function(key, subcat){
                 $('#table').append('<div  class="flex min-w-10 items-center justify-start gap-2 py-2">\
-   <img src="http://127.0.0.1:8000/storage/assets/images/subcat/'+subcat.image+'" class="w-16" alt="image">\
+   <img src="/storage/assets/images/subcat/'+subcat.image+'" class="w-16" alt="image">\
    <h1 class="font-bold text-xl w-6/12">'+subcat.name+'</h1>\
    <button class="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600 right-0 deletesubcatbtn" data-id="'+subcat.id+'" >Delete</button>\
 </div><hr class="w-full ">');
@@ -452,7 +453,7 @@ $(document).ready(function(){
                     $('#getcats').append('\
                         <tr class="border-b border-gray-200 hover:bg-gray-50">\
                             <td class="px-4 py-2">#'+subcat.id+'</td>\
-                            <td class="px-4 py-2 flex items-center"><img src="http://127.0.0.1:8000/storage/assets/images/cat/'+subcat.image+'" alt="cat"  class="w-10 h-10 rounded-sm mr-3">'+subcat.name+'</td>\
+                            <td class="px-4 py-2 flex items-center"><img src="/storage/assets/images/cat/'+subcat.image+'" alt="cat"  class="w-10 h-10 rounded-sm mr-3">'+subcat.name+'</td>\
                             <td class="px-4 py-2 hover:bg-slate-400 cursor-pointer opensubcat" data-name="'+subcat.name+'"  data-id="'+subcat.id+'"><span>'+subcat.subcategory_count+' </span> Subcat</td>\
                             <td class="px-4 py-2 text-blue-500 cursor-pointer updatecatbutton"  data-category-id="'+subcat.id+'" data-category-name="'+subcat.name+'" data-category-image="'+subcat.image+'" >Edit</td>\
                             <td class="px-4 py-2 text-red-500 cursor-pointer deletecat" data-category-id="'+subcat.id+'" data-category-name="'+subcat.name+'"  >Delete</td>\
@@ -482,7 +483,7 @@ $(document).ready(function(){
                                     $("#table").append('<hr class="w-full">');
                                     $.each(response.res,function(key, subcat){
                                         $('#table').append('<div  class="flex min-w-10 items-center justify-start gap-2 py-2">\
-                           <img src="http://127.0.0.1:8000/storage/assets/images/subcat/'+subcat.image+'" class="w-16" alt="image">\
+                           <img src="/storage/assets/images/subcat/'+subcat.image+'" class="w-16" alt="image">\
                            <h1 class="font-bold text-xl w-6/12">'+subcat.name+'</h1>\
                            <button class="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600 right-0 deletesubcatbtn" data-id="'+subcat.id+'" >Delete</button>\
                         </div><hr class="w-full ">');

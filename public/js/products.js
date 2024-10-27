@@ -10,7 +10,7 @@ $(document).ready(function(){
             var id = e.currentTarget.getAttribute("data-id")
             var img = e.currentTarget.getAttribute("data-img")
             var name =e.currentTarget.getAttribute("data-name")
-            var fullimg = "http://127.0.0.1:8000/storage/assets/images/productsimages/" + img;
+            var fullimg = "/storage/assets/images/productsimages/" + img;
            
             document.getElementById("thedeletedivimg").src = fullimg;
             if(img != null){

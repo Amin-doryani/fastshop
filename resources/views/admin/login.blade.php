@@ -8,7 +8,7 @@
     <title>Login</title>
 </head>
 <body class="flex justify-center items-center h-lvh font-sans ">
-    <form action="{{route("checkadminlogin")}}" method="Post" class="flex flex-col xl:w-1/2 lg:w-full md:w-fill shadow-md pt-20 pb-20 pl-10 pr-10 gap-3 items-center ">
+    <form action="{{route("checkadminlogin")}}" method="Post" class="flex flex-col w-11/12 xl:w-1/2 lg:w-1/2 md:w-8/12 shadow-md pt-20 pb-20 pl-10 pr-10 gap-3 items-center ">
         @if ($errors->any())
         <div id="error-alert" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative pt-5" role="alert">
         <strong class="font-bold">There were some problems with your input.</strong>
@@ -33,7 +33,7 @@
         <input type="text" name="username" id="username" placeholder="username" class="w-full  border-2 bg-white pl-7 h-10" autocomplete="off"  >
         <label for="password" class="w-full ">Password</label>
         <input type="password" name="password" id="password" class="w-full border-2 pl-7 h-10"  autocomplete="off" autocomplete="off" placeholder="password">
-        <button type="submit" class="bg-cyan-400 w-1/3 rounded-sm h-10 mt-10   hover:bg-cyan-500">Login</button>
+        <button type="submit" class="bg-cyan-400 w-1/3 rounded-sm h-10 mt-10 text-white font-bold   hover:bg-cyan-500">Login</button>
     </form>
 </body>
 </html>
